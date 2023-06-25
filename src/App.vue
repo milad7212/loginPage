@@ -12,9 +12,12 @@
         <div class="">
           <span class="block mb-4 my-2">نام کاربری</span>
           <div class="flex p-2 rounded-lg border border-gray-300 group">
-            <img class="w-6 h-6 group-hover:animate-bounce" src="./assets/icons/userIcon.svg" />
+            <img
+              class="w-6 h-6 group-hover:animate-bounce"
+              src="./assets/icons/userIcon.svg"
+            />
             <input
-              class="placeholder:text-xs placeholder:font-bold pr-4 outline-none "
+              class="placeholder:text-xs placeholder:font-bold pr-4 outline-none"
               type="text"
               placeholder="نام کاربری را وارد کنید"
             />
@@ -22,11 +25,26 @@
 
           <span class="block mb-4 my-2">رمز عبور</span>
           <div class="flex p-2 rounded-lg border border-gray-300 group">
-            <img class="w-6 h-6 group-hover:animate-pulse" src="./assets/icons/lockIcon.svg" />
+            <img
+              class="w-6 h-6 group-hover:animate-pulse"
+              src="./assets/icons/lockIcon.svg"
+            />
             <input
               class="placeholder:text-xs placeholder:font-bold pr-4 outline-none"
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               placeholder="رمز عبور را وارد کنید"
+            />
+            <img
+              @click.prevent="showPassword = !showPassword"
+              v-if="!showPassword"
+              class="w-6 h-6 cursor-pointer hover:scale-95 transition-all duration-150 ease-in"
+              src="./assets/icons/closeEyeIcon.svg"
+            />
+            <img
+              @click.prevent="showPassword = !showPassword"
+              v-if="showPassword"
+              class="w-6 h-6 cursor-pointer hover:scale-95 transition-all duration-150 ease-in"
+              src="./assets/icons/openEyeIcon.svg"
             />
           </div>
 
@@ -68,7 +86,9 @@
               'transition-all',
               'duration-150',
               'ease-in',
-              isDisabledBtn ? 'cursor-not-allowed bg-[#FFA266]/40' : 'bg-[#FFA266]',
+              isDisabledBtn
+                ? 'cursor-not-allowed bg-[#FFA266]/40'
+                : 'bg-[#FFA266]',
             ]"
           >
             ورود
@@ -114,29 +134,27 @@ export default {
       sumRandomNumbers: "",
       isDisabledBtn: true,
       backgroundImage,
+      showPassword: false,
     };
   },
   methods: {
     changeNumbers() {
       this.randomNum1 = Math.floor(Math.random() * 99) + 1;
       this.randomNum2 = Math.floor(Math.random() * 9) + 1;
-      this.sumRandomNumbers= ""
+      this.sumRandomNumbers = "";
     },
   },
-  
-  
-watch: {
-  sumRandomNumbers() {
-    const sumNumber = this.randomNum1 + this.randomNum2;
-    if (sumNumber === parseInt(this.sumRandomNumbers)) {
-    
-      this.isDisabledBtn = false;
-    } else {
-      this.isDisabledBtn = true;
-     
-    }
+
+  watch: {
+    sumRandomNumbers() {
+      const sumNumber = this.randomNum1 + this.randomNum2;
+      if (sumNumber === parseInt(this.sumRandomNumbers)) {
+        this.isDisabledBtn = false;
+      } else {
+        this.isDisabledBtn = true;
+      }
+    },
   },
-},
 };
 </script>
 
