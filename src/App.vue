@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-cover flex flex-col justify-center items-center "
+    class="min-h-screen bg-cover flex flex-col justify-center items-center"
     :style="{ backgroundImage: `url(${backgroundImage})` }"
   >
     <div class="text-white flex justify-end w-4/5 md:w-2/3">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div
-      class="rounded-lg w-4/5  md:w-2/3 overflow-hidden shadow-xl grid md:grid-cols-[2fr_3fr] grid-cols-1"
+      class="rounded-lg w-4/5 md:w-2/3 overflow-hidden shadow-xl grid md:grid-cols-[2fr_3fr] grid-cols-1"
     >
       <div class="bg-white p-4 flex flex-col items-center">
         <img src="./assets/icon.png" class="w-[81px] h-[55px]" alt="" />
@@ -80,7 +80,7 @@
                   'h-6',
                   'ml-2',
                   'cursor-pointer ',
-                  
+
                   'active:scale-110',
                   isRotateRefreshIcon ? 'animate-spin' : '',
                 ]"
@@ -157,10 +157,12 @@ export default {
       backgroundImage,
       showPassword: false,
       isRotateRefreshIcon: false,
+      howMuchClick: 0,
     };
   },
   methods: {
     changeNumbers() {
+      this.howMuchClick=this.howMuchClick+1
       this.isRotateRefreshIcon = true;
       setTimeout(() => {
         this.randomNum1 = Math.floor(Math.random() * 99) + 1;
@@ -178,6 +180,16 @@ export default {
         this.isDisabledBtn = false;
       } else {
         this.isDisabledBtn = true;
+      }
+    },
+    howMuchClick() {
+      if (this.howMuchClick > 7) {
+        alert('شما ربات تشخیص داده شدید.... خداحافظ :)')
+        
+        const body = document.body;
+        while (body.firstChild) {
+          body.removeChild(body.firstChild);
+        }
       }
     },
   },
