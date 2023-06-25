@@ -11,18 +11,18 @@
         <span class="text-[#FFA266] font-black my-4">ورود به سیستم</span>
         <div class="">
           <span class="block mb-4 my-2">نام کاربری</span>
-          <div class="flex p-2 rounded-lg border border-gray-300">
-            <img class="w-6 h-6" src="./assets/icons/userIcon.svg" />
+          <div class="flex p-2 rounded-lg border border-gray-300 group">
+            <img class="w-6 h-6 group-hover:animate-bounce" src="./assets/icons/userIcon.svg" />
             <input
-              class="placeholder:text-xs placeholder:font-bold pr-4 outline-none"
+              class="placeholder:text-xs placeholder:font-bold pr-4 outline-none "
               type="text"
               placeholder="نام کاربری را وارد کنید"
             />
           </div>
 
           <span class="block mb-4 my-2">رمز عبور</span>
-          <div class="flex p-2 rounded-lg border border-gray-300">
-            <img class="w-6 h-6" src="./assets/icons/lockIcon.svg" />
+          <div class="flex p-2 rounded-lg border border-gray-300 group">
+            <img class="w-6 h-6 group-hover:animate-pulse" src="./assets/icons/lockIcon.svg" />
             <input
               class="placeholder:text-xs placeholder:font-bold pr-4 outline-none"
               type="password"
@@ -30,28 +30,46 @@
             />
           </div>
 
-          <p class="text-xs text-decoration-underline cursor-pointer my-4 mb-8 hover:font-black transition-all duration-150 ease-in">
+          <p
+            class="text-xs text-decoration-underline cursor-pointer my-4 mb-8 hover:font-black transition-all duration-150 ease-in"
+          >
             گذرواژه را فراموش کرده ام!
           </p>
           <div class="flex justify-between items-center mb-4">
             <input
-              class="p-2 rounded-lg border w-32 border-gray-300 pr-4 outline-none text-left"
+              class="p-2 rounded-lg border w-32 border-gray-300 pr-4 outline-none text-center"
               type="text"
+              placeholder="کد امنیتی"
+              v-model="sumRandomNumbers"
             />
-            <div class="flex items-center ">
+            <div class="flex items-center">
               <img
+                @click="changeNumbers"
                 class="w-6 h-6 ml-4 cursor-pointer hover:scale-95 active:scale-110"
                 src="./assets/icons/refreshIcon.svg"
               />
               <div
-                class="p-2 rounded-lg border border-gray-300 px-4 font-black"
+                class="p-2 rounded-lg border border-gray-300 px-4 font-black select-none"
               >
-                <span>2</span><span>+</span><span>3</span>
+                <span>{{ randomNum1 }}</span
+                ><span class="mx-1">+</span><span>{{ randomNum2 }}</span>
               </div>
             </div>
           </div>
           <button
-            class="bg-[#FFA266] text-white w-full my-4 py-2 rounded-md active:scale-95 transition-all duration-150 ease-in"
+            :disabled="isDisabledBtn"
+            :class="[
+              'text-white',
+              'w-full',
+              'my-4',
+              'py-2',
+              'rounded-md',
+              'active:scale-95',
+              'transition-all',
+              'duration-150',
+              'ease-in',
+              isDisabledBtn ? 'cursor-not-allowed bg-[#FFA266]/40' : 'bg-[#FFA266]',
+            ]"
           >
             ورود
           </button>
@@ -82,8 +100,44 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import backgroundImage from "./assets/background.webp";
+import InputApp from "./components/InputApp.vue";
+export default {
+  components: {
+    InputApp,
+  },
+  data() {
+    return {
+      randomNum1: Math.floor(Math.random() * 99) + 1,
+      randomNum2: Math.floor(Math.random() * 9) + 1,
+      sumRandomNumbers: "",
+      isDisabledBtn: true,
+      backgroundImage,
+    };
+  },
+  methods: {
+    changeNumbers() {
+      this.randomNum1 = Math.floor(Math.random() * 99) + 1;
+      this.randomNum2 = Math.floor(Math.random() * 9) + 1;
+      this.sumRandomNumbers= ""
+    },
+  },
+  
+  
+watch: {
+  sumRandomNumbers() {
+    const sumNumber = this.randomNum1 + this.randomNum2;
+    if (sumNumber === parseInt(this.sumRandomNumbers)) {
+    
+      this.isDisabledBtn = false;
+    } else {
+      this.isDisabledBtn = true;
+     
+    }
+  },
+},
+};
 </script>
 
 <style>
