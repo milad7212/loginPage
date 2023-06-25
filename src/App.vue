@@ -23,30 +23,22 @@
             />
           </div>
 
-          <span class="block mb-4 my-2">رمز عبور</span>
-          <div class="flex p-2 rounded-lg border border-gray-300 group">
-            <img
-              class="w-6 h-6 group-hover:animate-pulse"
-              src="./assets/icons/lockIcon.svg"
-            />
-            <input
-              class="placeholder:text-xs placeholder:font-bold pr-4 outline-none"
-              :type="showPassword ? 'text' : 'password'"
-              placeholder="رمز عبور را وارد کنید"
-            />
-            <img
-              @click.prevent="showPassword = !showPassword"
-              v-if="!showPassword"
-              class="w-6 h-6 cursor-pointer hover:scale-95 transition-all duration-150 ease-in"
-              src="./assets/icons/closeEyeIcon.svg"
-            />
-            <img
-              @click.prevent="showPassword = !showPassword"
-              v-if="showPassword"
-              class="w-6 h-6 cursor-pointer hover:scale-95 transition-all duration-150 ease-in"
-              src="./assets/icons/openEyeIcon.svg"
-            />
-          </div>
+          <div class="py-4">
+    <span class="block mb-4 my-2">رمز عبور</span>
+    <div class="flex p-2 rounded-lg border border-gray-300 group">
+      <img class="w-6 h-6 group-hover:animate-pulse" src="./assets/icons/lockIcon.svg" />
+      <input
+        class="placeholder:text-xs placeholder:font-bold pr-4 outline-none flex-1"
+        :type="showPassword ? 'text' : 'password'"
+        placeholder="رمز عبور را وارد کنید"
+      />
+      <button class="w-6 h-6 cursor-pointer hover:scale-95 transition-all duration-150 ease-in"
+        @click.prevent="showPassword = !showPassword">
+        <img v-if="!showPassword" src="./assets/icons/closeEyeIcon.svg" />
+        <img v-if="showPassword" src="./assets/icons/openEyeIcon.svg" />
+      </button>
+    </div>
+  </div>
 
           <p
             class="text-xs text-decoration-underline cursor-pointer my-4 mb-8 hover:font-black transition-all duration-150 ease-in"
