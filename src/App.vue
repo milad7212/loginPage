@@ -25,7 +25,7 @@
           <span class="block mb-4 my-2">نام کاربری</span>
           <div class="flex p-2 rounded-lg border border-gray-300 group">
             <img
-              class="w-6 h-6 group-hover:animate-bounce"
+              class="w-5 h-5 group-hover:animate-bounce"
               src="./assets/icons/userIcon.svg"
             />
             <input
@@ -39,7 +39,7 @@
             <span class="block mb-4 my-2">رمز عبور</span>
             <div class="flex p-2 rounded-lg border border-gray-300 group">
               <img
-                class="w-6 h-6 group-hover:animate-bounce"
+                class="w-5 h-5 group-hover:animate-bounce"
                 src="./assets/icons/lockIcon.svg"
               />
               <input
@@ -48,7 +48,7 @@
                 placeholder="رمز عبور را وارد کنید"
               />
               <button
-                class="w-6 h-6 cursor-pointer hover:scale-95 transition-all duration-150 ease-in"
+                class="w-5 h-5 cursor-pointer hover:scale-95 transition-all duration-150 ease-in"
                 @click.prevent="showPassword = !showPassword"
               >
                 <img
@@ -76,8 +76,8 @@
               <img
                 @click="changeNumbers"
                 :class="[
-                  'w-6',
-                  'h-6',
+                  'w-5',
+                  'h-5',
                   'ml-2',
                   'cursor-pointer ',
 
